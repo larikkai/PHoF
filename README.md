@@ -7,15 +7,15 @@ osallistumismaksu.
 Muut käyttäjät voivat ilmoittautua, osallistuminen vahvistuu vain jos käyttäjällä on vaadittu määrä saldoa tilillään. Käyttäjä
 voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piiriin.
 
-## Toimintoja
-..* Kirjautuminen
---* Pelin tai turnauksen luonti ja muokkaus
---* Vapaiden kenttien katselu ja varauksen teko
---* Varausmaksun teko
---* Ilmoittautuneiden luettelo
---* Kenttävarauksen peruuttaminen asiakkaan toimesta
---* Pelin tai turnauksen peruutus asiakkaan toimesta
---* Pelin tai turnauksen peruutus yrityksen toimesta
+### Toimintoja
+  * Kirjautuminen
+  * Pelin tai turnauksen luonti ja muokkaus
+  * Vapaiden kenttien katselu ja varauksen teko
+  * Varausmaksun teko
+  * Ilmoittautuneiden luettelo
+  * Kenttävarauksen peruuttaminen asiakkaan toimesta
+  * Pelin tai turnauksen peruutus asiakkaan toimesta
+  * Pelin tai turnauksen peruutus yrityksen toimesta
 
 
 [I'm an inline-style link with title](https://github.com/larikkai/PHoF/blob/master/Tietokantakaavio.jpg "Tietokantakaavio")
