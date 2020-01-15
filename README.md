@@ -18,6 +18,6 @@ voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piir
   * Pelin tai turnauksen peruutus yrityksen toimesta
 
 
-[I'm an inline-style link with title](https://github.com/larikkai/PHoF/blob/master/Tietokantakaavio.jpg "Tietokantakaavio")
+[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/Tietokantakaavio.jpg "Tietokantakaavio")
 
 
