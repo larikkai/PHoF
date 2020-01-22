@@ -18,6 +18,10 @@ voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piir
   * Pelin tai turnauksen peruutus yrityksen toimesta
 
 
-[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/Tietokantakaavio.jpg "Tietokantakaavio")
+[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/documentation/Tietokantakaavio.jpg "Tietokantakaavio")
+
+[User storyt](https://github.com/larikkai/PHoF/blob/master/documentation/user_storyt.pdf "User storyt")
+
+[Padel Hall of Fame - Heroku](https://http://padel-hall-of-fame.herokuapp.com/ "Heroku-linkki")
 
 
