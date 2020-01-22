@@ -22,6 +22,6 @@ voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piir
 
 [User storyt](https://github.com/larikkai/PHoF/blob/master/documentation/user_storyt.pdf "User storyt")
 
-[Padel Hall of Fame - Heroku](https://http://padel-hall-of-fame.herokuapp.com/ "Heroku-linkki")
+[Padel Hall of Fame - Heroku](http://padel-hall-of-fame.herokuapp.com/ "Heroku-linkki")
 
 
