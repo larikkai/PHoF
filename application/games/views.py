@@ -26,6 +26,12 @@ def games_set_done(game_id):
   
     return redirect(url_for("games_index"))
 
+@app.route("/games/<game_id>/", methods=["GET"])
+@login_required
+def games_view_game(game_id):
+    return render_template("games/single.html", game = Game.query.get(game_id))
+
+
 @app.route("/games/<game_id>/remove", methods=["POST"])
 @login_required
 def games_remove(game_id):
