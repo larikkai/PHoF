@@ -26,6 +26,16 @@ def games_set_done(game_id):
   
     return redirect(url_for("games_index"))
 
+@app.route("/games/<game_id>/remove", methods=["POST"])
+@login_required
+def games_remove(game_id):
+
+    g = Game.query.get(game_id)
+    db.session().delete(g)
+    db.session().commit()
+  
+    return redirect(url_for("games_index"))
+
 @app.route("/games/", methods=["POST"])
 @login_required
 def games_create():
