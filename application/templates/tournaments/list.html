@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Tournament</th>
+      <th>Player count</th>
+      <th>Finished</th>
+    </tr>
+    {% for tournament in tournaments %}
+    <tr>
+      <td>{{ tournament.name }}</td>
+      <td>{{ tournament.playerCount }}</td>
+      <td>{{ tournament.done }}</td>
+      <td>
+        <form method="GET" action="{{ url_for('tournaments_view_tournament', tournament_id=tournament.id) }}">
+          <input type="submit" value="View"/>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('tournaments_set_done', tournament_id=tournament.id) }}">
+          <input type="submit" value="Change status!"/>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('tournaments_remove', tournament_id=tournament.id) }}">
+          <input type="submit" value="Remove tournament"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

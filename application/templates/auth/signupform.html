@@ -12,6 +12,32 @@
   <table>
     <tr>
       <td>
+        {{ form.firstName.label }}
+      </td>
+      <td>
+        {{ form.firstName }}
+      </td>
+      <td>
+        <ul>
+          {{ error }}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.lastName.label }}
+      </td>
+      <td>
+        {{ form.lastName }}
+      </td>
+      <td>
+        <ul>
+          {{ error }}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
 	    {{ form.username.label }}
       </td>
       <td>
@@ -21,7 +47,7 @@
         <ul>
           {{ error }}
         </ul>
-        </td>
+      </td>
     </tr>
     <tr>
       <td>

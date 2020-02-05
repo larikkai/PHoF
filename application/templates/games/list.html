@@ -4,11 +4,13 @@
   <table>
     <tr>
       <th>Game</th>
+      <th>Player count</th>
       <th>Finished</th>
     </tr>
     {% for game in games %}
     <tr>
       <td>{{ game.name }}</td>
+      <td>{{ game.playerCount }}</td>
       <td>{{ game.done }}</td>
       <td>
         <form method="GET" action="{{ url_for('games_view_game', game_id=game.id) }}">

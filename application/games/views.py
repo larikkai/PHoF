@@ -51,6 +51,7 @@ def games_create():
         return render_template("games/new.html", form = form)
   
     g = Game(form.name.data)
+    g.playerCount = form.playerCount.data
     g.done = form.done.data
     g.account_id = current_user.id
   
