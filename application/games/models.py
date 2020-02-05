@@ -12,5 +12,5 @@ class Game(Base):
 
     def __init__(self, name):
         self.name = name
-        self.playerCount = 2
+        #self.playerCount = 2
         self.done = False

@@ -62,6 +62,7 @@ def tournaments_create():
 
     while value != t.playerCount:
         g = Game(form.name.data)
+        g.playerCount = t.playerCount
         g.done = False
         g.account_id = current_user.id
   

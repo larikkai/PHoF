@@ -4,12 +4,14 @@
 <form method="POST" action="{{ url_for('games_create') }}">
   <table>
 	<tr>
-  	  <td>
-		{{ form.name.label }}
-  	  </td>
-  	  <td>
-		{{ form.name }}
-  	  </td>
+	  <td>
+		<form action="" method="post" role="form"></form>
+		<div class="form-group">
+			<label for="name">Game name</label>
+			<input type="text" class="form-control" id="name" name="name" placeholder="Insert name">
+			<small id="nameHelp" class="form-text text-muted">Name must be at least 5 characters long</small>
+		</div>
+	  </td>
   	  <td>
 		<!--<ul>-->
 	  	{% for error in form.name.errors %}
@@ -20,10 +22,14 @@
 	</tr>
 	<tr>
   	  <td>
-		{{ form.playerCount.label }}
-  	  </td>
-  	  <td>
-		{{ form.playerCount }}
+		<form action="" method="post" role="form"></form>
+		<div class="form-group">
+		  <label for="playerCount">Select player count</label>
+		  <select class="form-control form-control-sm" id="playerCount" name="playerCount">
+			<option>2</option>
+			<option>4</option>
+		  </select>
+		</div>
   	  </td>
   	  <td>
 		<!--<ul>-->
@@ -39,8 +45,6 @@
   	  </td>
   	  <td>
 		{{ form.done }}
-  	  </td>
-  	  <td>
   	  </td>
 	</tr>
 	<tr>

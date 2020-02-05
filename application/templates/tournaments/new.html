@@ -3,50 +3,54 @@
 {% block body %}
 <form method="POST" action="{{ url_for('tournaments_create') }}">
   <table>
-	<tr>
-    <td>
-	    {{ form.name.label }}
-    </td>
-    <td>
-	    {{ form.name }}
-    </td>
-    <td>
-	    <!--<ul>-->
-	    {% for error in form.name.errors %}
-	      <li>{{ error }}</li>
-	    {% endfor %}
-	    <!--</ul>-->
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ form.playerCount.label }}
-    </td>
-    <td>
-      {{ form.playerCount }}
-    </td>
-    <td>
+    <tr>
+      <td>
+      <form action="" method="post" role="form"></form>
+      <div class="form-group">
+        <label for="name">Tournament name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Insert name">
+        <small id="nameHelp" class="form-text text-muted">Name must be at least 5 characters long</small>
+      </div>
+      </td>
+      <td>
       <!--<ul>-->
-        {% for error in form.playerCount.errors %}
+        {% for error in form.name.errors %}
           <li>{{ error }}</li>
         {% endfor %}
-      <!--</ul>-->
-    </td>
-  </tr>
-	<tr>
-    <td>
+      <!--<ul>-->
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <form action="" method="post" role="form"></form>
+        <div class="form-group">
+          <label for="playerCount">Select player count</label>
+          <select class="form-control form-control-sm" id="playerCount" name="playerCount">
+            <option>2</option>
+            <option>4</option>
+          </select>
+        </div>
+      </td>
+      <td>
+      <!--<ul>-->
+      {% for error in form.playerCount.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      <!--<ul>-->
+      </td>
+    </tr>
+	  <tr>
+      <td>
       {{ form.done.label }}
-    </td>
-    <td>
+      </td>
+      <td>
 	    {{ form.done }}
-    </td>
-    <td>
-    </td>
-	</tr>
-	<tr>
-    <td colspan="3">
-	  <input type="submit" value="Add a new tournament"/>
-    </td>
-	</tr>
+      </td>
+	  </tr>
+	  <tr>
+      <td colspan="3">
+	      <input type="submit" value="Add a new tournament"/>
+      </td>
+	  </tr>
 </form>
 {% endblock %}
