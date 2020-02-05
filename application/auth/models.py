@@ -4,7 +4,6 @@ from application.models import Base
 from sqlalchemy.sql import text
 
 class User(Base):
-
     __tablename__ = "account"
 
     name = db.Column(db.String(144), nullable=False)
