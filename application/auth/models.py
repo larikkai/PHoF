@@ -28,7 +28,7 @@ class User(Base):
         return True
 
     @staticmethod
-    def find_users_with_no_tasks(done=0):
+    def find_users_with_no_tasks(done=True):
         stmt = text("SELECT Account.id, Account.name FROM Account"
                      " LEFT JOIN Game ON Game.account_id = Account.id"
                      " WHERE (Game.done IS null OR Game.done = :done)"
