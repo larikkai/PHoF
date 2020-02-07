@@ -4,20 +4,38 @@
 <p>
   <h2>Leaderboard</h2>
 </p>
+<style>
+  table, th, td {
+    width: 300px;
+  }
+</style>
 
-{% if needs_tasks is defined %}
-<p>
-  The following users need work:
-</p>
+<table>
+    <tr>
+      <th>Username</th>
+      <th>Games played</th>
+    </tr>
+    {% for user in list_games %}
+    <tr>
+      <td>{{ user.name }}</td>
+      <td style="text-align:center">{{ user.games }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p></p>
 
-<ul>
-  {% for user in needs_tasks %}
-  <li>
-    {{user.id}} {{user.name}}
-  </li>
+{% if needs_games is defined %}
+<h4>Following users have zero games</h4>
+<table>
+  <tr>
+    <th></th>
+  </tr>
+  {% for user in needs_games %}
+  <tr>
+    <td>{{ user.name }}</td>
+  </tr>
   {% endfor %}
-</ul>
-
+</table>
 {% endif %}
 
 {% endblock %}
