@@ -46,7 +46,7 @@ class User(Base):
     def list_users_by_games_played(done=True):
         stmt = text("SELECT Account.id, Account.name, COUNT(*) FROM Account"
                 " LEFT JOIN Game ON Game.account_id = Account.id"
-                " WHERE (Game.done NOT null AND Game.done = :done)"
+                " WHERE (Game.done IS NOT null AND Game.done = :done)"
                 " GROUP BY Account.id"
                 " HAVING COUNT(Game.id) > 0"
                 " ORDER BY COUNT(*) DESC").params(done=done)
