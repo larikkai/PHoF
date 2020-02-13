@@ -1,24 +1,91 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+
+  <table style="width:100%;">
     <tr>
-      <th>Game</th>
-      <th>Finished</th>
+      <th width="60%">GAME NAME</th>
+      <th style="text-align:center" width="10%">TYPE</th>
+      <th style="text-align:center" width="10%">RESULT</th>
+      <th style="text-align:center" width="10%">PLAYERS</th>
+      <th style="text-align:center" width="10%">FINISHED</th>
     </tr>
     <tr>
       <td>{{ game.name }}</td>
-      <td>{{ game.done }}</td>
+      <td style="text-align:center">{{ game.playerCount }} vs {{ game.playerCount }}</td>
+      {% if game.done %}
+      <td style="text-align:center">{{ game.score1 }} : {{ game.score2 }}</td>
+      <td style="text-align:center">{{ game.playerCount }} / {{ game.playerCount }}</td>
+      {% else %}
+      <td></td>
+      <td style="text-align:center"> {{ game.players|length }} / {{ game.playerCount }}</td>
+      {% endif %}
+      <td style="text-align:center">{{ game.done }}</td>
       <td>
+        {% if current_user.id == game.account_id and game.players|length == game.playerCount %}
         <form method="POST" action="{{ url_for('games_set_done', game_id=game.id) }}">
-          <input type="submit" value="Change status!"/>
+          <input type="submit" value="Set score"/>
         </form>
+        {% endif %}
       </td>
       <td>
+        {% if current_user.id == game.account_id and game.players|length != game.playerCount%}
         <form method="POST" action="{{ url_for('games_remove', game_id=game.id) }}">
           <input type="submit" value="Remove game"/>
         </form>
+        {% endif %}
+      </td>
+      <td>
+        {% if current_user not in game.players %}
+        <form method="POST" action="{{ url_for('games_join', game_id=game.id) }}">
+          <input type="submit" value="Join"/>
+        </form>
+        {% endif %}
       </td>
     </tr>
   </table>
-{% endblock %}
+  
+  <h4>SET SCORE</h4>
+
+  <form method="POST" action="{{ url_for('games_set_score', game_id=game.id) }}">
+  <table style="width:50%;">
+    <tr>
+      <th style="text-align:center" width="50%">TEAM 1</th>
+      <th style="text-align:center" width="50%">TEAM 2</th>
+    </tr>
+    <tr>
+      {% for i in range(4) %}
+      {% if i is divisibleby 2 %}
+      <tr></tr>>
+      {% endif %}
+      <td style="text-align:center">
+        {{ game.players[i].name }}
+      </td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <td>
+        <form action="" method="post" role="form"></form>
+        <div class="form-group">
+          <label for="name" style="text-align:center">Score team 1</label>
+          <input type="text" class="form-control" id="score1" name="score1" placeholder="Insert score 1">
+          <small id="nameHelp" class="form-text text-muted">value must be between [0,6]</small>
+        </div>
+      </td>
+      <td>
+        <form action="" method="post" role="form"></form>
+        <div class="form-group">
+          <label for="name">Score team 2</label>
+          <input type="text" class="form-control" id="score2" name="score2" placeholder="Insert score 2">
+          <small id="nameHelp" class="form-text text-muted">value must be between [0,6]</small>
+        </div>
+      </td>
+      <tr>
+        <td colspan="3">
+        <input type="submit" value="Add score"/>
+      </td>
+    </tr>
+    </tr>
+  </table>
+  </form>
+  {% endblock %}

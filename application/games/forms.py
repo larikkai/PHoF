@@ -8,3 +8,10 @@ class GameForm(FlaskForm):
  
     class Meta:
         csrf = False
+
+class GameResultForm(FlaskForm):
+    score1 = IntegerField("Score 1", [validators.number_range(min=0, max=6)])
+    score2 = IntegerField("Score 2", [validators.number_range(min=0, max=6)])
+ 
+    class Meta:
+        csrf = False
