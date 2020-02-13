@@ -3,8 +3,14 @@ from flask_login import login_user, logout_user
 
 from application import app, db
 from application.auth.models import User
+from application.auth.models import Role
+from application.auth.models import UserRoles
 from application.auth.forms import LoginForm
 from application.auth.forms import SignUpForm
+
+admin_role = Role(name='Admin')
+user_role = Role(name='User')
+db.session.commit()
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -46,6 +52,10 @@ def auth_signup():
                                 error = user.username + " already taken")
 
     u = User(form.firstName.data+' '+form.lastName.data)
+    #ADD DEFAULT ROLE
+    u.roles = [user_role,]
+    #u.roles = [admin_role,]
+    
     u.username = form.username.data
     u.password = form.password.data
     db.session().add(u)
