@@ -12,7 +12,6 @@ from application.auth.models import User
 def games_index():
     return render_template("games/list.html", games = Game.query.all())
 
-  
 @app.route("/games/new/")
 @login_required
 def games_form():
@@ -59,7 +58,11 @@ def games_join(game_id):
 @app.route("/games/<game_id>/", methods=["GET"])
 @login_required
 def games_view_game(game_id):
-    return render_template("games/single.html", game = Game.query.get(game_id), form=GameResultForm(), games=Game.query.all())
+    form = GameResultForm()
+    game = Game.query.get(game_id)
+    games = Game.query.all()
+
+    return render_template("games/single.html", game = game, form = form, games=games)
 
 
 @app.route("/games/<game_id>/remove", methods=["POST"])

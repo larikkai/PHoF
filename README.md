@@ -9,7 +9,8 @@ Sovellus on Helsingin yliopiston tietojenkäsittelytieteeen kandiohjelman kurssi
 #### Testitunnukset
 | Usertype        | Username      | Password        |
 | :-------------: |:-------------:| :-------------: |
-| User            | test_user     | tsoha2020       |
+| Admin           | admin         | test123         |
+| User            | test_user1    | test123         |
 
 ### Kuvaus
 Padel Hall of Fame tarjoaa mahdollisuuden järjestää padel turnauksia tai yksittäisiä pelejä. Käyttäjä voi valita 3-N määrän
