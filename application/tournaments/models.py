@@ -11,5 +11,4 @@ class Tournament(Base):
 
     def __init__(self, name):
         self.name = name
-        #self.playerCount = 4
         self.done = False

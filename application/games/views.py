@@ -21,8 +21,8 @@ def games_form():
 @login_required
 def games_set_done(game_id):
 
-    g = Game.query.get(game_id)
-    g.done = not g.done
+    game = Game.query.get(game_id)
+    game.done = not game.done
     db.session().commit()
   
     return redirect(url_for("games_index"))
@@ -33,10 +33,10 @@ def games_set_score(game_id):
 
     form = GameResultForm(request.form)
 
-    g = Game.query.get(game_id)
-    g.done = True
-    g.score1 = form.score1.data
-    g.score2 = form.score2.data
+    game = Game.query.get(game_id)
+    game.done = True
+    game.score1 = form.score1.data
+    game.score2 = form.score2.data
     db.session().commit()
   
     return redirect(url_for("games_index"))
@@ -45,12 +45,12 @@ def games_set_score(game_id):
 @login_required
 def games_join(game_id):
 
-    g = Game.query.get(game_id)
+    game = Game.query.get(game_id)
     
-    u = User.query.get(current_user.id)
-    g.players.append(u)
+    user = User.query.get(current_user.id)
+    game.players.append(user)
 
-    db.session().add(g)
+    db.session().add(game)
     db.session().commit()
   
     return redirect(url_for("games_index"))
@@ -58,6 +58,7 @@ def games_join(game_id):
 @app.route("/games/<game_id>/", methods=["GET"])
 @login_required
 def games_view_game(game_id):
+
     form = GameResultForm()
     game = Game.query.get(game_id)
     games = Game.query.all()
@@ -69,8 +70,8 @@ def games_view_game(game_id):
 @adminlogin_required(role='Admin')
 def games_remove(game_id):
 
-    g = Game.query.get(game_id)
-    db.session().delete(g)
+    game = Game.query.get(game_id)
+    db.session().delete(game)
     db.session().commit()
   
     return redirect(url_for("games_index"))
@@ -79,13 +80,13 @@ def games_remove(game_id):
 @adminlogin_required(role='Admin')
 def game_leave(game_id):
 
-    g = Game.query.get(game_id)
+    game = Game.query.get(game_id)
 
-    u = User.query.get(current_user.id)
+    user = User.query.get(current_user.id)
 
-    g.players.remove(u)
+    game.players.remove(user)
 
-    db.session().add(g)
+    db.session().add(game)
     db.session().commit()
   
     return redirect(url_for("games_index"))
@@ -93,20 +94,21 @@ def game_leave(game_id):
 @app.route("/games/", methods=["POST"])
 @login_required
 def games_create():
+
     form = GameForm(request.form)
   
     if not form.validate():
         return render_template("games/new.html", form = form)
   
-    g = Game(form.name.data)
-    g.playerCount = form.playerCount.data
-    g.done = form.done.data
-    g.account_id = current_user.id
+    game = Game(form.name.data)
+    game.playerCount = form.playerCount.data
+    game.done = form.done.data
+    game.account_id = current_user.id
 
-    u = User.query.get(current_user.id)
-    g.players.append(u)
+    user = User.query.get(current_user.id)
+    game.players.append(user)
   
-    db.session().add(g)
+    db.session().add(game)
     db.session().commit()
   
     return redirect(url_for("games_index"))

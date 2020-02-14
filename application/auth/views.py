@@ -10,7 +10,6 @@ from application.auth.forms import SignUpForm
 
 admin_role = Role(name='Admin')
 user_role = Role(name='User')
-db.session.commit()
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -43,7 +42,7 @@ def auth_signup():
 
     if not form.validate():
         return render_template("auth/signupform.html", form = SignUpForm(), 
-                                error = "invalid username")
+                                error = "name+lastname min 6, max 25 char + unique, password lenght min 4, max 15")
     
     user = User.query.filter_by(username=form.username.data).first()
 

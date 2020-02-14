@@ -25,8 +25,8 @@ def tournaments_form():
 @login_required
 def tournaments_set_done(tournament_id):
 
-    t = Tournament.query.get(tournament_id)
-    t.done = not t.done
+    tournament = Tournament.query.get(tournament_id)
+    tournament.done = not tournament.done
     db.session().commit()
   
     return redirect(url_for("tournaments_index"))
@@ -41,8 +41,8 @@ def tournaments_view_tournament(tournament_id):
 @login_required
 def tournaments_remove(tournament_id):
 
-    t = Tournament.query.get(tournament_id)
-    db.session().delete(t)
+    tournament = Tournament.query.get(tournament_id)
+    db.session().delete(tournament)
     db.session().commit()
   
     return redirect(url_for("tournaments_index"))
@@ -55,26 +55,26 @@ def tournaments_create():
     if not form.validate():
         return render_template("tournaments/new.html", form = form)
   
-    t = Tournament(form.name.data)
-    t.playerCount = form.playerCount.data
+    tournament = Tournament(form.name.data)
+    tournament.playerCount = form.playerCount.data
 
     value = 0
 
-    while value != t.playerCount:
-        g = Game(form.name.data)
-        g.playerCount = t.playerCount
-        g.done = False
-        g.account_id = current_user.id
+    while value != tournament.playerCount:
+        game = Game(form.name.data)
+        game.playerCount = tournament.playerCount
+        game.done = False
+        game.account_id = current_user.id
   
-        db.session().add(g)
+        db.session().add(game)
         db.session().commit()
         value+=1
         
 
-    t.done = form.done.data
-    t.account_id = current_user.id
+    tournament.done = form.done.data
+    tournament.account_id = current_user.id
   
-    db.session().add(t)
+    db.session().add(tournament)
     db.session().commit()
   
     return redirect(url_for("tournaments_index"))
