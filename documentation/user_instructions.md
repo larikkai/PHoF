@@ -1,4 +1,4 @@
-# Padel Hall of Fame - user instructions
+# Padel Hall of Fame - User instructions
 
 Open the app's homepage at http://padel-hall-of-fame.herokuapp.com/
 
@@ -38,7 +38,7 @@ After successful sign up, app will redirect you to login page.
 
 ### Logging
 
-After successful sign up or if desired (sign up earlier), you can login to the app by filling out loginforms at login page. 
+After successful sign up or if desired (sign up earlier), you can login into the app by filling out loginforms at login page. 
 
 ### Logout 
 
@@ -56,7 +56,7 @@ As sign up user you can you can join into a game or tournament. Browse games or 
 
 ## Usertypes
 
-The upper type contains, in addition to its own rights, all the rights of the lower types. User can manage the app on admin page, admin bar is only visible if user type is admin or super user.
+The upper type contains, in addition to its own rights, all the rights of the lower types. User can manage the app on admin page, admin bar is only visible if user type is admin or above.
 
 ### Superuser
 
@@ -70,4 +70,4 @@ Admin can remove user.
 
 ### User
 
-Add, join, leave games or tournaments.
+Add, join, leave games or tournaments and set or confirm game result.
