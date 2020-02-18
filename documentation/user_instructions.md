@@ -10,7 +10,7 @@ Some of the application's functions can only be used by a user who is sign up an
 
 For general navigation, use the links in the navigation bar:
 
-![alt text](https://github.com/larikkai/PHoF/blob/master/documentation/navbar_info.png "navbarinfo")
+![alt text](https://raw.githubusercontent.com/larikkai/PHoF/master/documentation/navbar_info.PNG "navbarinfo")
 
 ### Visitor
 
