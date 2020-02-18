@@ -51,7 +51,7 @@ def auth_signup():
                                 error = user.username + " already taken")
 
     user = User(form.firstName.data+' '+form.lastName.data)
-    #ADD DEFAULT ROLE
+
     user.roles = [user_role,]
     #user.roles = [admin_role,]
     
