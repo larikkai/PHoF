@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<p>
-  <h1>Leaderboard</h1>
-</p>
+
+<h1>Leaderboard</h1>
+
 <style>
   table, th, td {
     width: 300px;
   }
 </style>
 
-<table>
+<table summary="Display users by games in descensing orger"> 
     <tr>
       <th>Username</th>
       <th>Games played</th>
@@ -24,17 +24,20 @@
 </table>
 <p></p>
 
+<h2>Following users have zero games</h2>
+
 {% if needs_games is defined %}
-<h4>Following users have zero games</h4>
-<table>
+<table summary="Display users with zero games">
   <tr>
-    <th></th>
+    <th>Username</th>
   </tr>
+  <tr>
   {% for user in needs_games %}
   <tr>
     <td>{{ user.name }}</td>
   </tr>
   {% endfor %}
+  </tr>
 </table>
 {% endif %}
 

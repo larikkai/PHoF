@@ -50,14 +50,14 @@ def auth_signup():
         return render_template("auth/signupform.html", form = SignUpForm(), 
                                 error = user.username + " already taken")
 
-    u = User(form.firstName.data+' '+form.lastName.data)
+    user = User(form.firstName.data+' '+form.lastName.data)
     #ADD DEFAULT ROLE
-    u.roles = [user_role,]
-    #u.roles = [admin_role,]
+    user.roles = [user_role,]
+    #user.roles = [admin_role,]
     
-    u.username = form.username.data
-    u.password = form.password.data
-    db.session().add(u)
+    user.username = form.username.data
+    user.password = form.password.data
+    db.session().add(user)
     db.session().commit()
     return redirect(url_for("auth_login"))
     
