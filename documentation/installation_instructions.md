@@ -8,13 +8,13 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 ### Git clone with ssh
 
-Open commandline, make directory where you want to clone repository by typing mkdir < directory name >
+Open command line, make directory where you want to clone repository by typing mkdir < directory name >
 
 ```
 $ mkdir example
  ```
 
-Move into created directry by typing cd < directory name >
+Move into created directory by typing cd < directory name >
 ```
 $ cd example
 ```
@@ -49,7 +49,7 @@ Extract the downloaded file to the directory of your choice.
 
 1. Requirements
      * Git
-     * Pyhon - versio 3.5 or higher
+     * Python - version 3.5 or higher
      * Python pip
      * Sqlite3
 
@@ -59,32 +59,33 @@ Extract the downloaded file to the directory of your choice.
 
     __On Unix or MacOS__
 
-    Install virtual enviroment by runnin command python3 -m venv venv
+    Install virtual environment by runnin command python3 -m venv venv
     ```
     $ python3 -m venv venv 
     ```
-    Activate virtual enviroment, run: source venv/bin/activate
+    Activate virtual environment, run source venv/bin/activate
     ```
     $ source tutorial-env/bin/activate
     ```
-    _Sign of activate virtual enviroment (venv)_
+    __Sign of succesfull activation is (venv)__
+
     __On Windows__
 
-    Install virtual enviroment by runnin command python3 -m venv venv
+    Install virtual environment by runnin command python3 -m venv venv
     ```
     C:\Users\user\example\PHoF> python3 -m venv venv 
     ```
-    Activate virtual enviroment, run: venv\Scripts\activate.bat
+    Activate virtual environment, run venv\Scripts\activate.bat
     ```
     C:\Users\user\example\PHoF venv\Scripts\activate.bat
     ```
 
-    _Sign of activate virtual enviroment (venv)_
+    __Sign of succesfull activation is (venv)__
 
 
 3. Applying for dependencies
    
-    Upgrade pip, run command pip install --upgrrade pip
+    Upgrade pip, run command pip install --upgrade pip
     ```
     $ pip install --upgrade pip
     ```
