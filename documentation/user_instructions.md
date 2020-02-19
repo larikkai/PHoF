@@ -6,17 +6,17 @@ On the homepage, you can observe the functionality of the application and read g
 
 ## Getting Started
 
-Some of the application's functions can only be used by a user who is sign up and logged in or require admintype.
+Some of the application's functions can only be used by a user who is sign up and logged in or require user type to be admin.
 
 For general navigation, use the links in the navigation bar:
 
-![alt text](https://raw.githubusercontent.com/larikkai/PHoF/master/documentation/navbar_info.PNG "navbarinfo")
+![alt text](https://raw.githubusercontent.com/larikkai/PHoF/master/documentation/navbar_info.PNG "navbar info")
 
 ### Visitor
 
-As a visitor, you can read the front page news and view the list of games. For testing purposes, you can use pre-created user or admin type accounts:
+As a visitor, you can read the front-page news and view the list of games. For testing purposes, you can use pre-created user or admin type accounts:
 
-| Usertype        | Username      | Password        |
+| User type        | Username      | Password        |
 | :-------------: |:-------------:| :-------------: |
 | Admin           | admin         | test123         |
 | User            | test_user1    | test123         |
@@ -29,8 +29,8 @@ If desired, as visitor you can create your personal account by filling out the f
 #### Sign up form validation
 | Form            | Min           | Max             | Unique          |
 | :-------------: |:-------------:| :-------------: | :-------------: |
-| First name      | 3             | 10              | fullname: true  |
-| Last name       | 3             | 15              | fullname: true  |
+| First name      | 3             | 10              | full name: true |
+| Last name       | 3             | 15              | full name: true |
 | Username        | 3             | 15              | true            |
 | Password        | 4             | 15              |                 |
 
@@ -38,7 +38,7 @@ After successful sign up, app will redirect you to login page.
 
 ### Logging
 
-After successful sign up or if desired (sign up earlier), you can login into the app by filling out loginforms at login page. 
+After successful sign up or if desired (sign up earlier), you can login into the app by filling out login forms at login page. 
 
 ### Logout 
 
@@ -52,9 +52,9 @@ As sign up user you can create new game in Add a game page. Invent the game name
 
 ### Join or leave event
 
-As sign up user you can you can join into a game or tournament. Browse games or tournaments, if you are qualifed to join, join button is visible. If you are joined to a event and it is not confirmed you can leave the event. After event is confirmed you cannot leave.
+As sign up user you can you can join into a game or tournament. Browse games or tournaments, if you are qualified to join, join button is visible. If you are joined to an event and it is not confirmed, you can leave the event. After event is confirmed you cannot leave.
 
-## Usertypes
+## User types
 
 The upper type contains, in addition to its own rights, all the rights of the lower types. User can manage the app on admin page, admin bar is only visible if user type is admin or above.
 
@@ -62,7 +62,7 @@ The upper type contains, in addition to its own rights, all the rights of the lo
 
 Can promote user to admin.
 
-### Admintype 
+### Admin 
 
 Admin can remove confirmed event or change result in any given time.
 
