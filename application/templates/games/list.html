@@ -14,7 +14,7 @@
   <p>Users are looking players, join into the game</p>
   <table style="width:100%;">
     <tr>
-      <th width="45%" style="text-align:left">GAME NAME</th>
+      <th width="55%" style="text-align:left">GAME NAME</th>
       <th style="text-align:center" width="15%">TYPE</th>
       <th style="text-align:center" width="15%">RESULT</th>
       <th style="text-align:center" width="15%">PLAYERS</th>
@@ -74,10 +74,10 @@
   <p>Only creator of the game can se result</p>
   <table style="width:100%;">
     <tr>
-      <th width="60%" style="text-align:left">GAME NAME</th>
-      <th style="text-align:center" width="10%">TYPE</th>
-      <th style="text-align:center" width="10%">RESULT</th>
-      <th style="text-align:center" width="10%">PLAYERS</th>
+      <th width="55%" style="text-align:left">GAME NAME</th>
+      <th style="text-align:center" width="15%">TYPE</th>
+      <th style="text-align:center" width="15%">RESULT</th>
+      <th style="text-align:center" width="15%">PLAYERS</th>
     </tr>
     {% for game in games %}
     {% if game.done == false %}
@@ -134,6 +134,43 @@
       </td>
       {% endif %}
       {% endfor %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </table>
+
+  <h2>All games playerd</h2>
+  <table style="width:100%;">
+    <tr>
+      <th width="45%" style="text-align:left">GAME NAME</th>
+      <th style="text-align:center" width="15%">TYPE</th>
+      <th style="text-align:center" width="15%">RESULT</th>
+    </tr>
+    {% for game in games %}
+    {% if game.done %}
+    <tr>
+      <td style="text-align:left">{{ game.name }}</td>
+      <td style="text-align:center">{{ (game.playerCount // 2) }}vs{{ game.playerCount // 2 }}</td>
+      <td style="text-align:center">{{ game.score1 }} : {{ game.score2 }}</td>
+      {% if current_user and current_user.is_authenticated %}
+      <td>
+        <form method="GET" action="{{ url_for('games_view_game', game_id=game.id) }}">
+          <input type="submit" value="View"/>
+       </form>
+      </td>
+      {% if 'Admin' in current_user.roles[0].name and current_user.id != game.account_id %}
+      <td>
+        <form method="POST" action="{{ url_for('games_remove', game_id=game.id) }}">
+          <input type="submit" value="Remove game"/>
+        </form>
+      </td>
+      <td>
+        <form method="GET" action="{{ url_for('games_view_game', game_id=game.id) }}">
+          <input type="submit" value="Set score"/>
+        </form>
+      </td>
+      {% endif %}
+      {% endif %}
     </tr>
     {% endif %}
     {% endfor %}
