@@ -56,7 +56,7 @@ class User(Base):
 
     @staticmethod
     def find_users_with_no_games(done=False):
-        stmt = text("SELECT Account.id, Account.name FROM Account"
+        stmt = text("SELECT Account.id, Account.name, Account.date_created FROM Account"
                      " LEFT JOIN Game ON Game.account_id = Account.id"
                      " WHERE (Game.done IS null OR Game.done = :done)"
                      " GROUP BY Account.id"
@@ -65,7 +65,7 @@ class User(Base):
 
         response = []
         for row in res:
-            response.append({"name":row[1]})
+            response.append({"name":row[1], "date_created":row[2]})
 
         return response
 

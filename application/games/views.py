@@ -10,7 +10,7 @@ from application.auth.models import User
 
 @app.route("/games/", methods=["GET"])
 def games_index():
-    return render_template("games/list.html", games = Game.query.all())
+    return render_template("games/list.html", games = Game.query.all(), playersInGames=Game.find_players_in_games())
 
 @app.route("/games/new/")
 @login_required

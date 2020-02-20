@@ -1,56 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('games_create') }}">
-  <table>
-	<tr>
-	  <td>
-		<form action="" method="post" role="form"></form>
-		<div class="form-group">
-			<label for="name">Game name</label>
-			<input type="text" class="form-control" id="name" name="name" placeholder="Insert name">
-			<small id="nameHelp" class="form-text text-muted">Name lenght 5 to 15 characters long </small>
-		</div>
-	  </td>
-  	  <td>
-		<!--<ul>-->
-	  	{% for error in form.name.errors %}
-	  	  <li>{{ error }}</li>
-	  	{% endfor %}
-		<!--<ul>-->
-  	  </td>
-	</tr>
-	<tr>
-  	  <td>
-		<form action="" method="post" role="form"></form>
-		<div class="form-group">
-		  <label for="playerCount">Select player count</label>
-		  <select class="form-control form-control-sm" id="playerCount" name="playerCount">
-			<option>2</option>
-			<option>4</option>
-		  </select>
-		</div>
-  	  </td>
-  	  <td>
-		<!--<ul>-->
-	  	{% for error in form.playerCount.errors %}
-	  	  <li>{{ error }}</li>
-	  	{% endfor %}
-		<!--<ul>-->
-  	  </td>
-	</tr>
-	<tr>
-  	  <td>
-	  {{ form.done.label }}
-  	  </td>
-  	  <td>
-		{{ form.done }}
-  	  </td>
-	</tr>
-	<tr>
-  	  <td colspan="3">
-		<input type="submit" value="Add a new game"/>
-  	  </td>
-	</tr>
-</form>
+<body class="text-center">
+  <form method="POST" action="{{ url_for('games_create') }}">
+    <h1 class="h3 mb-3 font-weight-normal">Create a new game</h1>
+    <div class="form-group">
+	  <label for="name" class="sr-only">Game name</label>
+	  <input type="text" id="name" name="name" placeholder="Game name" required="" autofocus="" minlength="5" maxlength="15">
+	  <small id="nameHelp" class="form-text text-muted">Lenght 5 to 15 characters long </small>
+	</div>
+    <div class="form-group">
+	  <label for="playerCount">Select player count</label>
+		<select id="playerCount" name="playerCount" required="" autofocus="" minlength="2" maxlength="4">
+		  <option>2</option>
+		  <option>4</option>
+		</select>
+		<small id="nameHelp" class="form-text text-muted">Choose player count </small>
+	  </div>
+    <div class="form-group">
+      <button class="btn" type="submit">Add a new game</button>
+    </div>
+  </form>
+</body>
+{{ error }}
+
 {% endblock %}

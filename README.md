@@ -34,8 +34,7 @@ voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piir
 
 ### Dokumentaatio
 
-#### Tietokantakaavio
-![alt text](https://github.com/larikkai/PHoF/blob/master/documentation/Tietokantakaavio.jpg "Tietokantakaavio")
+[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/documentation/Tietokantakaavio.jpg "Tietokantakaavio")
 
 [Käyttötapaukset](https://github.com/larikkai/PHoF/blob/master/documentation/user_storyt.md "Käyttötapaukset")
 

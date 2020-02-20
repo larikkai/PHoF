@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+  table, th, td {
+    width: 500px;
+  }
+</style>
+
+<body class="text-center">
+  <h1>Padel Hall of Fame Rankings</h1>
+  <h2>All time</h2>
+  <table summary="Display user by points in descensing order">
+    <tr>
+      <th>User name</th>
+      <th>Games played</th>
+      <th>Points</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td> {{ user.name }} </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+<table summary="Display users by games in descensing order"> 
+    <tr>
+      <th>Username</th>
+      <th>Games played</th>
+    </tr>
+    {% for user in list_games %}
+    <tr>
+      <td>{{ user.name }}</td>
+      <td style="text-align:center">{{ user.games }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<p></p>
+
+<h2>Following users have zero games</h2>
+
+{% if needs_games is defined %}
+<table summary="Display users with zero games">
+  <tr>
+    <th>Username</th>
+    <th>Sign up date</th>
+  </tr>
+  <tr>
+  {% for user in needs_games %}
+  <tr>
+    <td>{{ user.name }} </td>
+    <td>{{ user.date_created }}</td>
+  </tr>
+  {% endfor %}
+  </tr>
+</table>
+{% endif %}
+</body>
+{% endblock %}

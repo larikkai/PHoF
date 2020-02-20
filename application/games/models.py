@@ -24,7 +24,6 @@ class Game(Base):
 
     def __init__(self, name):
         self.name = name
-        #self.playerCount = 2
         self.done = False
 
     @staticmethod
@@ -40,3 +39,35 @@ class Game(Base):
             response.append(row[1])
 
         return response
+    
+    @staticmethod
+    def find_how_many_players_in(gameid):
+        stmt = text("SELECT COUNT(*) FROM Account"
+                    " INNER JOIN game_players ON game_players.account_id = Account.id"
+                    " LEFT JOIN Game ON Game.id = game_players.game_id"
+                    " WHERE Game.id = :gameid").params(gameid=gameid)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"players":row[0]})
+
+        return response
+    
+    @staticmethod
+    def find_players_in_games():
+        stmt = text("SELECT Game.id, COUNT(*) FROM Game"
+                    " INNER JOIN game_players ON game_players.game_id = Game.id"
+                    " LEFT JOIN Account ON Account.id = game_players.account_id"
+                    " GROUP BY Game.id")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"gameid":row[0], "players":row[1]})
+
+        return response
+
+        #SELECT * FROM Game INNER JOIN game_players ON game_players.game_id = Game.id LEFT JOIN Account ON Account.id = game_players.account_id;
+        #SELECT Game.id, COUNT(*) FROM Game INNER JOIN game_players ON game_players.game_id = Game.id LEFT JOIN Account ON Account.id = game_players.account_id GROUP BY Game.id;
+        #SELECT COUNT(*) FROM Account INNER JOIN game_players ON game_players.account_id = Account.id LEFT JOIN Game ON Game.id = game_players.game_id WHERE Game.id = 1;

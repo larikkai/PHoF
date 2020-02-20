@@ -2,43 +2,15 @@
 
 {% block body %}
 
-<h1>Leaderboard</h1>
-
-<style>
-  table, th, td {
-    width: 300px;
-  }
-</style>
-
-<table summary="Display users by games in descensing orger"> 
-    <tr>
-      <th>Username</th>
-      <th>Games played</th>
-    </tr>
-    {% for user in list_games %}
-    <tr>
-      <td>{{ user.name }}</td>
-      <td style="text-align:center">{{ user.games }}</td>
-    </tr>
-    {% endfor %}
-</table>
-<p></p>
-
-<h2>Following users have zero games</h2>
-
-{% if needs_games is defined %}
-<table summary="Display users with zero games">
-  <tr>
-    <th>Username</th>
-  </tr>
-  <tr>
-  {% for user in needs_games %}
-  <tr>
-    <td>{{ user.name }}</td>
-  </tr>
-  {% endfor %}
-  </tr>
-</table>
-{% endif %}
+<div>
+  <h1 class="cover-heading">Welcome to</h1>
+  <h1 class="cover-heading">Padel Hall of Fame</h1>
+  <p>Padel is one of the fastest growing racket game in the world, the low start threshold and sociality are attractive. 
+    Although the padel is largely unknown to the vast majority of the population, the number of padel enthusiast is growing fast.</p>
+  <p>Padel Hall of Fame is a completely hobby-driven application that gives users access to play padel.</p>
+</div>
+<div>
+  <a href="{{ url_for('auth_signup') }}">Sign up now and see you in courts.</a>
+</div>
 
 {% endblock %}

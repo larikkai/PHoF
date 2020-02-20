@@ -8,9 +8,6 @@ from application.auth.models import UserRoles
 from application.auth.forms import LoginForm
 from application.auth.forms import SignUpForm
 
-admin_role = Role(name='Admin')
-user_role = Role(name='User')
-
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
@@ -42,7 +39,7 @@ def auth_signup():
 
     if not form.validate():
         return render_template("auth/signupform.html", form = SignUpForm(), 
-                                error = "name+lastname min 6, max 25 char + unique, password lenght min 4, max 15")
+                                error = "Invalid information")
     
     user = User.query.filter_by(username=form.username.data).first()
 
@@ -52,11 +49,11 @@ def auth_signup():
 
     user = User(form.firstName.data+' '+form.lastName.data)
 
-    user.roles = [user_role,]
-    #user.roles = [admin_role,]
+    user_role = Role.query.filter_by(name='User').first()
     
     user.username = form.username.data
     user.password = form.password.data
+    user.roles.append(user_role)
     db.session().add(user)
     db.session().commit()
     return redirect(url_for("auth_login"))

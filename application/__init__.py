@@ -55,6 +55,8 @@ from application.tournaments import views
 
 from application.admin import views
 
+from application.accounts import views
+
 # login functionality2
 from application.auth.models import User
 
@@ -65,5 +67,60 @@ def load_user(user_id):
 
 try: 
     db.create_all()
+
+    # Create default roles
+    from application.auth.models import Role
+
+    admin_role = Role(name='Admin')
+    user_role = Role(name='User')
+    db.session().add(admin_role)
+    db.session().add(user_role)
+    db.session().commit()
+
+    user_role = Role.query.filter_by(name='User').first()
+    admin_role = Role.query.filter_by(name='Admin').first()
+
+    if os.environ.get("HEROKU"):
+        # Create default users
+        user1 = User('User user')
+        user1.username = 'test_user1'
+        user1.password = 'test'
+        user1.roles.append(user_role)
+        db.session().add(user1)
+
+        user2 = User('Admin user')
+        user2.username = 'admin'
+        user2.password = 'test123'
+        user2.roles.append(admin_role)
+        db.session().add(user2)
+        db.session().commit()
+    
+    else:
+        # Create default users
+        user1 = User('test user1')
+        user1.username = 'test_user1'
+        user1.password = 'test'
+        user1.roles.append(user_role)
+        db.session().add(user1)
+
+        user2 = User('test user2')
+        user2.username = 'test_user2'
+        user2.password = 'test'
+        user2.roles.append(admin_role)
+        db.session().add(user2)
+        db.session().commit()
+
+        user3 = User('test user3')
+        user3.username = 'test_user3'
+        user3.password = 'test'
+        user3.roles.append(user_role)
+        db.session().add(user3)
+
+        user4 = User('test user4')
+        user4.username = 'test_user4'
+        user4.password = 'test'
+        user4.roles.append(user_role)
+        db.session().add(user4)
+        db.session().commit()
 except:
     pass

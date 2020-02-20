@@ -1,71 +1,50 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('auth_signup') }}">
-  <table>
-    <tr>
-      <td>
-      <b>New user</b>
-      </td>
-    </tr>
-  </table>
-  <table>
-    <tr>
-      <td>
-        {{ form.firstName.label }}
-      </td>
-      <td>
-        {{ form.firstName }}
-      </td>
-      <td>
-        <ul>
-          {{ error }}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{ form.lastName.label }}
-      </td>
-      <td>
-        {{ form.lastName }}
-      </td>
-      <td>
-        <ul>
-          {{ error }}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-	    {{ form.username.label }}
-      </td>
-      <td>
-	    {{ form.username }}
-      </td>
-      <td>
-        <ul>
-          {{ error }}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>
-	    {{ form.password.label }}
-      </td>
-      <td>
-    	{{ form.password }}
-      </td>
-      <td>
-        <ul>
-          {{ error }}
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-	<input type="submit" value="Signup"/>
-      </td>
-    </tr>
-</form>
+<body class="text-center">
+  <h1>Welcome sign up page</h1>
+  <p>Please read our rules before proceeding</p>
+  <form method="POST" action="{{ url_for('auth_signup') }}">
+    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+    <div class="form-group">
+      <label for="firstName" class="sr-only">First name</label>
+      {% if not error %}
+      <input id="firstName" name="firstName" type="text" placeholder="First name" required=""/>
+      {% else %}
+      <input id="firstName" name="firstName" type="text" placeholder="First name" required="" minlength="3" maxlength="10" autofocus=""/>
+      <small id="firstNameHelp" class="form-text text-muted">First name must be 3 to 10 characters long</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="sr-only">Last name</label>
+      {% if not error %}
+      <input id="lastName" name="lastName" type="text" placeholder="Last name" required="" autofocus=""/>
+      {% else %}
+      <input id="lastName" name="lastName" type="text" placeholder="Last name" required="" minlength="3" maxlength="15" autofocus=""/>
+      <small id="lastNameHelp" class="form-text text-muted">Last name must be 3 to 15 characters long</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="username" class="sr-only">Username</label>
+      {% if not error %}
+      <input id="username" name="username" type="text" placeholder="Username" required="" autofocus=""/>
+      {% else %}
+      <input id="username" name="username" type="text" placeholder="Username" required="" minlength="3" maxlength="15" autofocus=""/>
+      <small id="usernameHelp" class="form-text text-muted">Username must be 3 to 15 characters long and unique</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <label for="password" class="sr-only">Password</label>
+      {% if not error %}
+      <input id="password" name="password" type="password" placeholder="Password" required=""/>
+      {% else %}
+      <input id="password" name="password" type="password" placeholder="Password" required="" minlength="4" maxlength="15"/>
+      <small id="passwordHelp" class="form-text text-muted">Password must be 4 to 15 characters long</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      <button class="btn" type="submit">Sign up</button>
+    </div>
+  </form>
+</body>
 {% endblock %}
