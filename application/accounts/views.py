@@ -12,3 +12,15 @@ from application.auth.models import User
 def users_index():
     return render_template("users/list.html", users = User.query.all(),
         needs_games=User.find_users_with_no_games(), list_games=User.list_users_by_games_played())
+
+
+@app.route("/users/<user_id>/remove", methods = ["POST"])
+def user_remove_user(user_id):
+
+    user = User.query.get(user_id)
+    user.games = []
+    db.session().commit()
+    db.session().delete(user)
+    db.session().commit()
+
+    return redirect(url_for("admin_user"))

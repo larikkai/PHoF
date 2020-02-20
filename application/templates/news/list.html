@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+  #defaultdivspace {
+  margin-bottom:100px;
+  }
+  #divspacenews {
+    margin-bottom:50px;
+  }
+</style>
+
+<body class="text-center">
+
+  <h1>Padel Hall of Fame</h1>
+  <h2>News</h2>
+  <div id="defaultdivspace">
+    <nav class="nav nav-masthead nav-expand-md">
+      <a class="nav-link" href="{{ url_for('news_index') }} ">News</a>
+      <a class="nav-link" href="{{ url_for('news_form') }}">Write new news</a>
+    </nav>
+  </div>
+
+  <div id="divspavenews" class="text-center">
+  {% for new in news %}
+
+    <h3>{{ new.title }}</h3>
+    <p>{{ new.content }}</p>
+    <div style="text-align:end">
+      <small>author {{ new.author }}</small>
+    </div>
+  
+  {% endfor %}
+  </div>
+</body>
+{% endblock %}

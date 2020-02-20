@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<body class="text-center">
+  <form method="POST" action="{{ url_for('news_create') }}">
+    <h1 class="h3 mb-3 font-weight-normal">Create a new news</h1>
+    <div class="form-group">
+	    <label for="title" class="sr-only">News Title</label>
+	    <input type="text" id="title" name="title" placeholder="Add Title" required="" autofocus="" minlength="5" maxlength="50">
+	    <small id="titleHelp" class="form-text text-muted">Lenght 5 to 50 characters long </small>
+    </div>
+    <div class="form-group">
+      <label for="content" class="sr-only">News content</label>
+      <textarea class="form-control" id="content" name="content" placeholder="Add some content, min 5 and max lenght 300 characters" required="" autofocus="" minlength="50" maxlength="300" rows="6"></textarea>
+    </div>
+    <div class="form-group">
+      <button class="btn" type="submit">Add a new news</button>
+    </div>
+  </form>
+</body>
+
+{% endblock %}

@@ -57,6 +57,9 @@ from application.admin import views
 
 from application.accounts import views
 
+from application.news import models
+from application.news import views
+
 # login functionality2
 from application.auth.models import User
 

@@ -14,3 +14,28 @@
 </div>
 
 {% endblock %}
+
+{% block footer %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="min-height: 200px;">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="d-block w-100">
+        <h3>Padel Hall of Fame</h3>
+        <p>Reading news is mandatory to all user</p>
+        <small>author SUPERUSER</small>
+      </div>
+    </div>
+    {% for new in news %}
+    <div class="carousel-item">
+      <div class="d-block w-100">
+        <h3>{{ new.title }}</h3>
+        <p>{{ new.content }}</p>
+        <small>author {{ new.author }}</small>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

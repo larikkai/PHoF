@@ -21,6 +21,8 @@ class User(Base):
     roles = db.relationship('Role', secondary='user_roles')
 
     games = db.relationship("Game", backref='account', lazy=True)
+
+    news = db.relationship("New", backref='account', lazy=True)
   
     def __init__(self, name):
         self.name = name

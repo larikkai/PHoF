@@ -21,7 +21,7 @@
       <tr>
           <td>{{ account.name }}</td>
           <td>
-            <form method="POST" action="{{ url_for('auth_remove_user', user_id=account.id) }}">
+            <form method="POST" action="{{ url_for('user_remove_user', user_id=account.id) }}">
                 <input type="submit" value="Remove user"/>
              </form>
           </td>
