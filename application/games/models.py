@@ -16,10 +16,10 @@ class Game(Base):
     score2 = db.Column(db.Integer)
 
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
-                           nullable=False)
+                        index=True)
     
     players = db.relationship(
-        'User', secondary=gamePlayers, backref='gamePlayers', lazy=True)
+        'User', secondary=gamePlayers, backref='gamePlayers', lazy=True, cascade="delete")
     
 
     def __init__(self, name):
