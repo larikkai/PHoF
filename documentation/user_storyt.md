@@ -33,22 +33,8 @@
 
 ### As an administrator, I want to be able to...
 
-  * Change games results so that wrongful results can be corrected.
-  * Cancel any event to ensure high quality events for users.
-
-## Rules
-
-### As a visitor, I want to be able to...
-
-  * read the rules so I can consider whether I want to become a member.
-
-### As a user, I want to be able to...
-
-  * read the rules so I can report misconduct.
-
-### As an administrator, I want to be able to...
-
-  * Customize the rules to keep the site up to date.
+  * Change games results so that wrongful results can be corrected. [x]
+  * Cancel any event by removing it to ensure high quality events for users. [x]
 
 ## Ranking
 
