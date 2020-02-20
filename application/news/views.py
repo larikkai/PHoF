@@ -22,12 +22,8 @@ def news_form():
 def news_create():
 
     form = NewsForm(request.form)
-
-    print(form.title.data)
-    print(form.content.data)
   
     if not form.validate():
-        print('FAIL TO POST NEWS')
         return render_template("news/new.html", form = form)
     
     user = User.query.get(current_user.id)
@@ -42,7 +38,7 @@ def news_create():
   
     return redirect(url_for("news_index"))
 
-@app.route("/news/<new_id>/", methods=["GET", "POST"])
+@app.route("/news/<new_id>/", methods=["GET"])
 @login_required
 @adminlogin_required(role='Admin')
 def news_view_new(new_id):
@@ -52,17 +48,39 @@ def news_view_new(new_id):
     new = New.query.get(new_id)
 
     if new and request.method == "GET":
-        return render_template("news/new.html", form = NewsForm(), new=new)
+        return render_template("news/single.html", form = form, new=new)
+    
+    if request.method == "GET":
+        return render_template("news/new.html", form = NewsForm())
+
 
     form = NewsForm(request.form)
   
     if not form.validate():
-        return render_template("news/<new_id>", form = form)
+        return render_template("news/new.html", form = form)
+
+@app.route("/news/<new_id>/update", methods=["POST"])
+@login_required
+@adminlogin_required(role='Admin')
+def news_update(new_id):
+
+    form = NewsForm(request.form)
 
     new = New.query.get(new_id)
+
     new.title = form.title.data
     new.content = form.content.data
 
     db.session().commit()
 
-    return render_template("news/list.html", new=New.querty.all())
+    return redirect(url_for("news_index"))
+
+@app.route("/news/<new_id>/remove", methods=["POST"])
+@adminlogin_required(role='Admin')
+def news_remove(new_id):
+
+    new = New.query.get(new_id)
+    db.session().delete(new)
+    db.session().commit()
+  
+    return redirect(url_for("news_index"))

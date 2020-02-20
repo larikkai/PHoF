@@ -14,7 +14,7 @@
 ### As an administrator, I want to be able to...
 
   * Produce content for the home page in the form of news to make the home page interesting. [x]
-  * Edit the news so that incorrect information does not end up in the news
+  * Edit the news so that incorrect information does not end up in the news [x]
 
 ## Sign up
 

@@ -5,8 +5,9 @@
   #defaultdivspace {
   margin-bottom:100px;
   }
+
   #divspacenews {
-    margin-bottom:50px;
+    margin-top:50px;
   }
 </style>
 
@@ -16,21 +17,31 @@
   <h2>News</h2>
   <div id="defaultdivspace">
     <nav class="nav nav-masthead nav-expand-md">
+      <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main</a>
       <a class="nav-link" href="{{ url_for('news_index') }} ">News</a>
       <a class="nav-link" href="{{ url_for('news_form') }}">Write new news</a>
     </nav>
   </div>
 
-  <div id="divspavenews" class="text-center">
+  <div class="text-center">
   {% for new in news %}
-
+  <div id="divspacenews">
     <h3>{{ new.title }}</h3>
     <p>{{ new.content }}</p>
     <div style="text-align:end">
       <small>author {{ new.author }}</small>
     </div>
-  
-  {% endfor %}
+    {% if current_user.is_authenticated %}
+    {% if 'Admin' in current_user.roles[0].name %}
+    <form method="POST" action="{{ url_for('news_remove', new_id=new.id) }}">
+      <button class="btn btn-sm btn-dark" type="submit">Remove</button>
+    </form>
+    <form method="GET" action="{{ url_for('news_view_new', new_id=new.id) }}">
+      <button class="btn btn-sm btn-dark" type="submit">Update</button>
+    </form>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
   </div>
 </body>
 {% endblock %}
