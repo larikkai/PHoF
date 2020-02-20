@@ -14,17 +14,17 @@
   <p>Users are looking players, join into the game</p>
   <table style="width:100%;">
     <tr>
-      <th width="60%" style="text-align:left">GAME NAME</th>
-      <th style="text-align:center" width="10%">TYPE</th>
-      <th style="text-align:center" width="10%">RESULT</th>
-      <th style="text-align:center" width="10%">PLAYERS</th>
+      <th width="45%" style="text-align:left">GAME NAME</th>
+      <th style="text-align:center" width="15%">TYPE</th>
+      <th style="text-align:center" width="15%">RESULT</th>
+      <th style="text-align:center" width="15%">PLAYERS</th>
     </tr>
     {% for game in games %}
     <tr>
       {% for row in playersInGames %}
       {% if row.gameid == game.id and row.players < game.playerCount %}
       <td style="text-align:left">{{ game.name }}</td>
-      <td style="text-align:center">{{ (game.playerCount // 2) }} vs {{ game.playerCount // 2 }}</td>
+      <td style="text-align:center">{{ (game.playerCount // 2) }}vs{{ game.playerCount // 2 }}</td>
       {% if game.done %}
       <td style="text-align:center">{{ game.score1 }} : {{ game.score2 }}</td>
       <td style="text-align:center">{{ game.playerCount }} / {{ game.playerCount }}</td>

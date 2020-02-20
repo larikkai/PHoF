@@ -4,30 +4,32 @@
 
 ### As a visitor, I want to be able to...
 
-  * Read news so that I can sign up for application and participate events.
+  * Read news so that I can sign up for application and participate events. [x]
 
 ### As a visitor or user, I want to be able to...
 
-  * See the contact details of the news writer so that I can send him question or a request for correction if needed.
+  * Read news so that I get information [x]
+  * See news author so I know who wrote the news [x]
 
 ### As an administrator, I want to be able to...
 
-  * Produce content for the home page in the form of news to make the home page interesting.
+  * Produce content for the home page in the form of news to make the home page interesting. [x]
+  * Edit the news so that incorrect information does not end up in the news
 
 ## Sign up
 
 ### As a visitor, I want to be able to...
 
-   * Sign up for the application so I participate events
+   * Sign up for the application so I participate events [x]
 
 ## Events
 
 ### As a user, I want to be able to...
 
-  * Choose which events I participate in so I can participate.
-  * Browse events to get information about another users' level.
-  * Organize events so that I can play with friends or other users.
-  * Cancel event I have organized so that I do not organize unnecessary events.
+  * Choose which events I participate in so I can participate. [x]
+  * Browse events to get information about another users' level. [x]
+  * Organize events so that I can play with friends or other users. [x]
+  * Cancel not yet full event I have organized if needed so that I do not organize unnecessary events. [x]
 
 ### As an administrator, I want to be able to...
 
