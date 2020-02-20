@@ -57,22 +57,20 @@ class User(Base):
         return response 
 
     @staticmethod
-    def find_users_with_no_games(done=False):
-        stmt = text("SELECT Account.id, Account.name, Account.date_created FROM Account"
-                     " LEFT JOIN Game ON Game.account_id = Account.id"
-                     " WHERE (Game.done IS null OR Game.done = :done)"
-                     " GROUP BY Account.id"
-                     " HAVING COUNT(Game.id) = 0").params(done=done)
+    def find_users_with_no_games():
+        stmt = text("SELECT Account.date_created, Account.username FROM Account"
+                     " LEFT JOIN game_players ON game_players.account_id = Account.id"
+                     " WHERE game_id IS NULL;")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"name":row[1], "date_created":row[2]})
+            response.append({"name":row[1], "date_created":row[0]})
 
         return response
 
     @staticmethod
-    def list_users_by_games_played(done=True):
+    def list_users_by_games_created(done=True):
         stmt = text("SELECT Account.id, Account.name, COUNT(*) FROM Account"
                 " LEFT JOIN Game ON Game.account_id = Account.id"
                 " WHERE (Game.done IS NOT null AND Game.done = :done)"
@@ -88,18 +86,23 @@ class User(Base):
         return response
     
     @staticmethod
-    def list_users_by_games_played2(done=True):
-        stmt = text("SELECT Account.id, Account.name, COUNT(*) FROM Account"
+    def list_users_by_games_played(done=True):
+        stmt = text("SELECT Account.name, COUNT(*) FROM Account"
                 " INNER JOIN game_players ON game_players.account_id = Account.id"
-                " INNER JOIN GAME ON Game.account_id = Account.id"
-                " WHERE (Game.done IS NOT null AND Game.done = :done)"
+                " INNER JOIN Game ON Game.id = game_players.game_id"
+                " WHERE Game.done = :done"
                 " GROUP BY Account.id"
-                " HAVING COUNT(Game.id) > 0"
                 " ORDER BY COUNT(*) DESC").params(done=done)
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"name":row[1], "games":row[2]})
+            response.append({"name":row[0], "games":row[1]})
 
         return response
+    
+    #SELECT Account.id, Account.name, COUNT(*) FROM Account INNER JOIN game_players ON game_players.account_id = Account.id INNER JOIN GAME ON Game.account_id = Account.id  WHERE (Game.done IS NOT null AND Game.done = True GROUP BY Account.id HAVING COUNT(Game.id) > 0 ORDER BY COUNT(*) DESC;
+    #SELECT * FROM Account INNER JOIN game_players ON game_players.account_id = Account.id INNER JOIN Game ON Game.id = game_players.game_id WHERE Game.done = True;
+    #SELECT Account.name, COUNT(*) FROM Account INNER JOIN game_players ON game_players.account_id = Account.id INNER JOIN Game ON Game.id = game_players.game_id WHERE Game.done = True GROUP BY Account.id;
+    #SELECT Account.name, COUNT(*) FROM Account INNER JOIN game_players ON game_players.account_id = Account.id INNER JOIN Game ON Game.id = game_players.game_id WHERE Game.done = True GROUP BY Account.id ORDER BY COUNT(*) DESC;
+    #SELECT Account.date_created, Account.username FROM Account LEFT JOIN game_players ON game_players.account_id = Account.id WHERE game_id IS NULL;

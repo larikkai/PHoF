@@ -40,11 +40,11 @@
 
 ### As a visitor, I want to be able to...
 
-  * Browse through ranking so I can track the success of my friends.
+  * Browse through ranking so I can track the success of my friends. [x]
 
 ### As a user, I want to be able to...
 
-  * I want to see my rank so that I can rate my skill level with other users.
+  * I want to see my rank so that I can rate my skill level with other users. [x]
 
 ## Only as an administrator, I want to be able to
 
