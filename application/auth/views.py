@@ -57,4 +57,14 @@ def auth_signup():
     db.session().add(user)
     db.session().commit()
     return redirect(url_for("auth_login"))
-    
+
+@app.route("/auth/<user_id>/remove", methods = ["POST"])
+def auth_remove_user(user_id):
+
+    user = User.query.get(user_id)
+    user.games = []
+    db.session().commit()
+    db.session().delete(user)
+    db.session().commit()
+
+    return redirect(url_for("admin_user"))

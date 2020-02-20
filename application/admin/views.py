@@ -10,4 +10,10 @@ from application.auth.models import UserRoles
 @login_required
 @adminlogin_required(role='Admin')
 def admin_index():
-    return render_template("admin.html", users = User.query.all())
+    return render_template("admin/admin.html", users = User.query.all())
+
+@app.route("/admin/users", methods = ["GET"])
+@login_required
+@adminlogin_required(role='Admin')
+def admin_user():
+    return render_template("admin/admin_user.html", accounts = User.query.all())

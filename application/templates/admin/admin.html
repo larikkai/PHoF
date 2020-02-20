@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<body class="text-center">
+<h1>Padel Hall of Fame</h1>
+<h2>Admin page</h2>
+<small>Use your rights carefully</small>
+<div>
+  <nav class="nav nav-masthead nav-expand-md">
+    <a class="nav-link" href="{{ url_for('admin_index') }} ">Administrator main page</a>
+    <a class="nav-link" href="{{ url_for('admin_user') }}">User control</a>
+    <a class="nav-link" href="{{ url_for('users_index') }}">Result control</a>
+    <a class="nav-link" href="{{ url_for('users_index') }}">Superuser only</a>
+    {% if current_user.is_authenticated %}
+    {% if 'Super' in current_user.get_roles(current_user.id) %}
+    {% endif %}
+    {% endif %}
+  </nav>
+</div>
+</body>
+{% endblock %}
