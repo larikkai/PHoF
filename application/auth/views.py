@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
+from flask_bcrypt import generate_password_hash
+from flask_bcrypt import check_password_hash
 
 from application import app, db
 from application.auth.models import User
@@ -14,10 +16,12 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
+    
+    pw_hash = generate_password_hash(form.password.data, 10)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
-    if not user:
+    user = User.query.filter_by(username=form.username.data).first()
+
+    if not user or not check_password_hash(pw_hash, form.password.data):
         return render_template("auth/loginform.html", form = form,
                                 error = "No such username or password")
 
@@ -52,7 +56,9 @@ def auth_signup():
     user_role = Role.query.filter_by(name='User').first()
     
     user.username = form.username.data
-    user.password = form.password.data
+    password = form.password.data
+    pw_hash = generate_password_hash(password, 10)
+    user.password = pw_hash
     user.roles.append(user_role)
     db.session().add(user)
     db.session().commit()
