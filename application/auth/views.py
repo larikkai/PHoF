@@ -19,11 +19,9 @@ def auth_login():
 
     user = User.query.filter_by(username=form.username.data).first()
 
-    if user:
-        candidate = form.password.data
-        if check_password_hash(user.password, candidate):
-            login_user(user)
-            return redirect(url_for("index"))
+    if user and check_password_hash(user.password, form.password.data):
+        login_user(user)
+        return redirect(url_for("index"))
 
     return render_template("auth/loginform.html", form = form,
                                 error = "No such username or password")
@@ -56,7 +54,7 @@ def auth_signup():
     
     user.username = form.username.data
     password = form.password.data
-    pw_hash = generate_password_hash(password, 10)
+    pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
     user.password = pw_hash
     user.roles.append(user_role)
     db.session().add(user)
