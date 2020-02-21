@@ -54,7 +54,7 @@ def auth_signup():
     
     user.username = form.username.data
     password = form.password.data
-    pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+    pw_hash = generate_password_hash(password).decode('utf-8')
     user.password = pw_hash
     user.roles.append(user_role)
     db.session().add(user)
