@@ -45,7 +45,7 @@ Under repository name, click __Clone or download__. From dropdown menu click __D
 
 Extract the downloaded file to the directory of your choice.
 
-## Running the app locally
+## Running the application locally
 
 1. Requirements
      * Git
@@ -105,3 +105,62 @@ Extract the downloaded file to the directory of your choice.
     $ python3 run.py
     ```
     By default, the application starts at http://localhost:5000/ or http://127.0.0.1:5000/ 
+
+## Running application in Heroku
+
+1. Sign up Heroku account and install Heroku CLI
+
+    For more detailed instructions, check out https://devcenter.heroku.com/articles/heroku-cli#verifying-your-installation
+
+    Sign up and install Heroku CLI, run command sudo snap install --classic heroku
+
+    ```
+    $ sudo snap install --classic heroku
+    ```
+    Verify your installation, run command heroku --version
+    ```
+    $ heroku --version
+    ```
+    You should see heroku/x.y.z in output. 
+
+2. Install PostgreSQL and configure Heroku
+    
+    After installation configure Heroku to use PostgreSQL databse, run command 
+    ```
+    $ heroku addons:add heroku-postgresql:hobby-dev
+    ```
+    Set Heroku environment variable to 1, run heroku config:set HEROKU=1
+    ```
+    $ heroku config:set HEROKU=1
+    ```
+
+3. Log in Heroku and create Heroku remote
+
+    Run command heroku login to login
+    ```
+    $ heroku login
+    ```
+    Create Heroku application, use command line to go applications local root directory. 
+    Run command heroku create project_name
+    ```
+    $ heroku create <project_name>
+    ```
+    Run command git remove -v to confirm remote
+    ```
+    $ git remote -v
+    ```
+    Add Heroku to git repository, run following commands
+    ```
+    $ git remote add heroku https://git.heroku.com/project_name.git
+    $ git add .
+    $ git commit -m "Initial commit"
+    ```
+
+
+4. Deploy code
+
+    Deploy code, run command git push heroku master
+    ```
+    $ git push heroku master
+    ```
+

@@ -34,33 +34,34 @@ If desired, as visitor you can create your personal account by filling out the f
 | Username        | 3             | 15              | true            |
 | Password        | 4             | 15              |                 |
 
-After successful sign up, app will redirect you to login page.
+After successful sign up, application will redirect you to login page.
 
 ### Logging
 
-After successful sign up or if desired (sign up earlier), you can login into the app by filling out login forms at login page. 
+After successful sign up or if desired (sign up earlier), you can login into the application. Use navigation bar link to entry Login page, fill out login forms and press Login. 
 
 ### Logout 
 
-When you stop using the app, you can log out by pressing Logout in the navigation bar.
+When you stop using the application, you can log out by pressing Logout in the navigation bar.
 
 ## Games and tournaments
 
 ### Add games or tournaments
 
-As sign up user you can create new game in Add a game page. Invent the game name and fill it in the game name field, select the number of players from dropdown form. When done click add new game / tournament.
+As sign up user you can create new game, user navbar to entry Add a game or Add a tournament page. Invent the game name and fill it in the game name field, select the number of players from dropdown form. When done click Add a new game / tournament.
 
 ### Join or leave event
 
 As sign up user you can you can join into a game or tournament. Browse games or tournaments, if you are qualified to join, join button is visible. If you are joined to an event and it is not confirmed, you can leave the event. After event is confirmed you cannot leave.
 
+## Ranking and news
+
+At ranking page you can observe statistic from the application. The news rotates in the bar on the front page, more details can be found on the news page.
+It is convenient navigation bar link to navigate.
+
 ## User types
 
-The upper type contains, in addition to its own rights, all the rights of the lower types. User can manage the app on admin page, admin bar is only visible if user type is admin or above.
-
-### Superuser
-
-Can promote user to admin.
+The upper type contains, in addition to its own rights, all the rights of the lower types. User can manage the application on admin page, admin bar is only visible if user type is admin.
 
 ### Admin 
 

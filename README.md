@@ -13,24 +13,22 @@ Sovellus on Helsingin yliopiston tietojenkäsittelytieteeen kandiohjelman kurssi
 | User            | test_user1    | test123         |
 
 ### Kuvaus
-Padel Hall of Fame tarjoaa mahdollisuuden järjestää padel turnauksia tai yksittäisiä pelejä. Käyttäjä voi valita 3-N määrän
-osallistujia turnaukseen ja rajata halutessaan osallistujia taitotason mukaan, yksittäiseen otteluun käyttäjä voi valita 2 tai 4 pelaaja. 
-Jokaisesta turnauksesta tai ottelusta laaditaan esite, josta selviää turnauksen nimi, aika, paikka, pelaajamäärä, vaadittu taitotaso ja
-osallistumismaksu.
+Padel Hall of Fame tarjoaa käyttäjille mahdollisuuden osasllistua ja järjestää padel turnauksia tai yksittäisiä pelejä. Käyttäjä voi valita 3-N määrän
+osallistujia turnaukseen, yksittäiseen otteluun käyttäjä voi valita 2 tai 4 pelaaja. Osallistujamäärän lisäksi käyttäjä voi määrittää tapahtumalleen nimen.
+Kun tapahtumaan on liittynyt vaadittu määrä pelaajia voi tapahtuman järjestäjä asettaa tuloksen, jonka jälkeen tapahtuma on päättynyt ja se tilastoidaan. 
+Käyttäjä voi liittyä muiden käyttäjien järjestämiin tapahtumiin jos niissä on tilaa ja poistua jos ottelu ei ole vielä täynnä. Etu- ja uutissivulla käyttäjä voi tutustua uutisaiheisiin.
 
-
-Muut käyttäjät voivat ilmoittautua, osallistuminen vahvistuu vain jos käyttäjällä on vaadittu määrä saldoa tilillään. Käyttäjä
-voi lisätä saldoa tililleen, saldon laskutus kuulu tämän järjestelmän piiriin.
+Admin käyttäjät voivat peruskäyttäjien toimintojen lisäksi luoda sisältöä uutisten muodossa. Käytössä on oma erillinen admin-paneeli sivuston ylläpitootimintoja varten.
 
 #### Toimintoja
+  * Ilmoittautuminen
   * Kirjautuminen
+  * Uutiset
   * Pelin tai turnauksen luonti ja muokkaus
   * Vapaiden kenttien katselu ja varauksen teko
-  * Varausmaksun teko
   * Ilmoittautuneiden luettelo
-  * Kenttävarauksen peruuttaminen asiakkaan toimesta
-  * Pelin tai turnauksen peruutus asiakkaan toimesta
-  * Pelin tai turnauksen peruutus yrityksen toimesta
+  * Pelin tai turnauksen peruutus käyttäjän toimesta
+  * Pelin tai turnauksen peruutus adminin toimesta
 
 ### Dokumentaatio
 

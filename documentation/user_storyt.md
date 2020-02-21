@@ -48,4 +48,4 @@
 
 ## Only as an administrator, I want to be able to
 
-  * Remove users so that dishonest users don't spoil the experience of others
+  * Remove users so that dishonest users don't spoil the experience of others [x]
