@@ -16,18 +16,17 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
-    
-    pw_hash = generate_password_hash(form.password.data, 10)
 
     user = User.query.filter_by(username=form.username.data).first()
 
-    if not user or not check_password_hash(pw_hash, form.password.data):
-        return render_template("auth/loginform.html", form = form,
+    if user:
+        candidate = form.password.data
+        if check_password_hash(user.password, candidate):
+            login_user(user)
+            return redirect(url_for("index"))
+
+    return render_template("auth/loginform.html", form = form,
                                 error = "No such username or password")
-
-
-    login_user(user)
-    return redirect(url_for("index"))
 
 @app.route("/auth/logout")
 def auth_logout():
