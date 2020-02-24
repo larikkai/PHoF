@@ -15,6 +15,7 @@ def users_index():
 
 
 @app.route("/users/<user_id>/remove", methods = ["POST"])
+@adminlogin_required(role='Admin')
 def user_remove_user(user_id):
 
     user = User.query.get(user_id)
