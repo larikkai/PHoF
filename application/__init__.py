@@ -88,8 +88,8 @@ try:
     admin_role = Role.query.filter_by(name='Admin').first()
 
     if os.environ.get("HEROKU"):
-        # Create default users
-        # user1 = User('User user')
+        """ Create default users
+        user1 = User('User user')
         user1.username = 'test_user1'
         pw_hash = bcrypt.generate_password_hash('test123').decode('utf-8')
         user1.password = pw_hash
@@ -102,10 +102,10 @@ try:
         user2.password = pw_hash
         user2.roles.append(admin_role)
         db.session().add(user2)
-        db.session().commit()
+        db.session().commit() """
     
     else:
-        """ Create default users
+        # Create default users
         user1 = User('test user1')
         user1.username = 'test_user1'
         pw_hash = bcrypt.generate_password_hash('test').decode('utf-8')
@@ -134,6 +134,6 @@ try:
         user4.password = pw_hash
         user4.roles.append(user_role)
         db.session().add(user4)
-        db.session().commit() """
+        db.session().commit()
 except:
     pass
