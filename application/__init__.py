@@ -85,10 +85,10 @@ try:
     db.session().commit()
 
     user_role = Role.query.filter_by(name='User').first()
-    admin_role = Role.query.filter_by(name='Admin').first() """
+    admin_role = Role.query.filter_by(name='Admin').first()
 
     if os.environ.get("HEROKU"):
-        """ Create default users
+        Create default users
         user1 = User('User user')
         user1.username = 'test_user1'
         pw_hash = bcrypt.generate_password_hash('test123').decode('utf-8')

@@ -17,7 +17,11 @@
   <h2>News</h2>
   <div id="defaultdivspace">
     <nav class="nav nav-masthead nav-expand-md">
+      {% if current_user.is_authenticated %}
+      {% if 'Admin' in current_user.roles[0].name %}
       <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main</a>
+      {% endif %}
+      {% endif %}
       <a class="nav-link" href="{{ url_for('news_index') }} ">News</a>
       <a class="nav-link" href="{{ url_for('news_form') }}">Write new news</a>
     </nav>
