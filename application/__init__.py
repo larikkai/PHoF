@@ -75,7 +75,7 @@ def load_user(user_id):
 try: 
     db.create_all()
 
-    """  Create default roles
+    #Create default roles
     from application.auth.models import Role
 
     admin_role = Role(name='Admin')
@@ -88,7 +88,7 @@ try:
     admin_role = Role.query.filter_by(name='Admin').first()
 
     if os.environ.get("HEROKU"):
-        Create default users
+        #Create default users
         user1 = User('User user')
         user1.username = 'test_user1'
         pw_hash = bcrypt.generate_password_hash('test123').decode('utf-8')
@@ -134,6 +134,6 @@ try:
         user4.password = pw_hash
         user4.roles.append(user_role)
         db.session().add(user4)
-        db.session().commit() """
+        db.session().commit()
 except:
     pass
