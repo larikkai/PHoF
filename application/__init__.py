@@ -75,7 +75,7 @@ def load_user(user_id):
 try: 
     db.create_all()
 
-    #Create default roles
+    """#Create default roles
     from application.auth.models import Role
 
     admin_role = Role(name='Admin')
@@ -134,6 +134,6 @@ try:
         user4.password = pw_hash
         user4.roles.append(user_role)
         db.session().add(user4)
-        db.session().commit()
+        db.session().commit()"""
 except:
     pass
