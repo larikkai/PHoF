@@ -19,7 +19,7 @@ class Game(Base):
                         index=True)
     
     players = db.relationship(
-        'User', secondary=gamePlayers, backref='gamePlayers', lazy=True, cascade="delete")
+        'User', secondary=gamePlayers, backref='gamePlayers', lazy=True)
     
 
     def __init__(self, name):

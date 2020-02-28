@@ -1,16 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<style>
+  table {
+    width: 700px;
+    margin-top:100px;
+  }
+</style>
+
 <body class="text-center">
 <h1>Padel Hall of Fame</h1>
 <h2>Admin page</h2>
 <small>Use your rights carefully</small>
 <div>
   <nav class="nav nav-masthead nav-expand-md">
-    <a class="nav-link" href="{{ url_for('admin_index') }} ">Administrator main page</a>
+    <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main page</a>
     <a class="nav-link" href="{{ url_for('admin_user') }}">User control</a>
-    <a class="nav-link" href="{{ url_for('users_index') }}">Result control</a>
-    <a class="nav-link" href="{{ url_for('users_index') }}">Superuser only</a>
+    <a class="nav-link" href="{{ url_for('games_index') }}">Results</a>
+    <a class="nav-link" href="{{ url_for('news_index') }}">News</a>
   </nav>
 
   <table symmary="Users registered">
@@ -22,7 +29,7 @@
           <td>{{ account.name }}</td>
           <td>
             <form method="POST" action="{{ url_for('user_remove_user', user_id=account.id) }}">
-                <input type="submit" value="Remove user"/>
+              <button class="btn btn-sm" type="submit">Remove user</button>
              </form>
           </td>
       </tr>

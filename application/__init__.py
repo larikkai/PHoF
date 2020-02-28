@@ -119,7 +119,6 @@ try:
         user2.password = pw_hash
         user2.roles.append(admin_role)
         db.session().add(user2)
-        db.session().commit()
 
         user3 = User('test user3')
         user3.username = 'test_user3'

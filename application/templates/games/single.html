@@ -4,14 +4,15 @@
 
 <style>
   table {
-  margin-bottom:100px;
+    width: 700px;
+    margin-bottom:100px;
 }
 </style>
 
 <body class="text-center">
   <h1>Padel Hall of Fame</h1>
   <p>Single game result page</p>
-  <table style="width:100%;">
+  <table>
     <tr>
       <th width="55%" style="text-align:left">GAME NAME</th>
       <th style="text-align:center" width="15%">TYPE</th>
@@ -21,10 +22,10 @@
     </tr>
     <tr>
       <td style="text-align:left">{{ game.name }}</td>
-      <td style="text-align:center">{{ game.playerCount }}vs{{ game.playerCount }}</td>
+      <td style="text-align:center">{{ game.playerCount // 2 }}vs{{ game.playerCount // 2 }}</td>
       {% if game.done %}
       <td style="text-align:center">{{ game.score1 }} : {{ game.score2 }}</td>
-      <td style="text-align:center">{{ game.playerCount }} / {{ game.playerCount }}</td>
+      <td style="text-align:center">{{ game.playerCount }}</td>
       {% else %}
       <td></td>
       <td style="text-align:center"> {{ game.players|length }} / {{ game.playerCount }}</td>
@@ -48,9 +49,13 @@
       </td>
     </tr>
   </table>
+  <h2>Players</h2>
+    {% for player in game.players %}
+    {{ player.name }}
+    {% endfor %}
   {% if 'Admin' in current_user.roles[0].name or game.done == false %}
   <form method="POST" action="{{ url_for('games_set_score', game_id=game.id) }}">
-  <table style="width:100%;">
+  <table>
     <tr>
       <th></th>
       <th style="text-align:center" width="20%">TEAM 1</th>

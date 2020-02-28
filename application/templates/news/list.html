@@ -2,8 +2,12 @@
 
 {% block body %}
 <style>
+  #divdefault {
+    width: 600px;
+  }
+
   #defaultdivspace {
-  margin-bottom:100px;
+    margin-bottom:100px;
   }
 
   #divspacenews {
@@ -11,23 +15,23 @@
   }
 </style>
 
-<body class="text-center">
+<div id="divdefault" class="text-center">
 
   <h1>Padel Hall of Fame</h1>
   <h2>News</h2>
-  <div id="defaultdivspace">
+  <div>
+    {% if current_user.is_authenticated %}
+    {% if 'Admin' in current_user.roles[0].name %}
     <nav class="nav nav-masthead nav-expand-md">
-      {% if current_user.is_authenticated %}
-      {% if 'Admin' in current_user.roles[0].name %}
-      <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main</a>
-      {% endif %}
-      {% endif %}
+      <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main page</a>
       <a class="nav-link" href="{{ url_for('news_index') }} ">News</a>
       <a class="nav-link" href="{{ url_for('news_form') }}">Write new news</a>
     </nav>
+    {% endif %}
+    {% endif %}
   </div>
 
-  <div class="text-center">
+  <div style="text-align:center">
   {% for new in news %}
   <div id="divspacenews">
     <h3>{{ new.title }}</h3>
@@ -47,5 +51,5 @@
     {% endif %}
     {% endfor %}
   </div>
-</body>
+</div>
 {% endblock %}

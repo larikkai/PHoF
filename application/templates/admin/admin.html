@@ -1,22 +1,27 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<body class="text-center">
-<h1>Padel Hall of Fame</h1>
-<h2>Admin page</h2>
-<small>Use your rights carefully</small>
-<div>
-  <nav class="nav nav-masthead nav-expand-md">
-    <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main page</a>
-    <a class="nav-link" href="{{ url_for('admin_user') }}">User control</a>
-    <a class="nav-link" href="{{ url_for('users_index') }}">Result control</a>
-    <a class="nav-link" href="{{ url_for('news_index') }}">News</a>
-    <a class="nav-link" href="{{ url_for('users_index') }}">Superuser only</a>
-    {% if current_user.is_authenticated %}
-    {% if 'Super' in current_user.get_roles(current_user.id) %}
-    {% endif %}
-    {% endif %}
-  </nav>
+<style>
+  #divdefault {
+    width: 600px;
+    margin-bottom:100px;
+  }
+</style>
+
+<div id="divdefault">
+  <h1>Padel Hall of Fame</h1>
+  <h2>Admin page</h2>
+  <div>
+    <nav class="nav nav-masthead nav-expand-md">
+      <a class="nav-link" href="{{ url_for('admin_index') }} ">Admin main page</a>
+      <a class="nav-link" href="{{ url_for('admin_user') }}">User control</a>
+      <a class="nav-link" href="{{ url_for('games_index') }}">Results</a>
+      <a class="nav-link" href="{{ url_for('news_index') }}">News</a>
+      {% if current_user.is_authenticated %}
+      {% if 'Super' in current_user.get_roles(current_user.id) %}
+      {% endif %}
+      {% endif %}
+    </nav>
+  </div>
 </div>
-</body>
 {% endblock %}

@@ -1,7 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<body class="text-center">
+<style>
+  #divdefault {
+    width: 600px;
+    margin-bottom:100px;
+  }
+</style>
+
+<div id="divdefault" class="text-center">
   <form method="POST" action="{{ url_for('auth_login') }}">
     <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
     <div class="form-group">
@@ -13,10 +20,10 @@
       <input id="password" name="password" type="password" placeholder="Password" required=""/>
     </div>
     <div class="form-group">
-      <button class="btn" type="submit">Login</button>
+      <button class="btn btn-sm" type="submit">Login</button>
     </div>
   </form>
-</body>
+</div>
   {{ error }}
 
 {% endblock %}

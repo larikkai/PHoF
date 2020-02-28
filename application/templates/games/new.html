@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<body class="text-center">
+<style>
+
+  #divdefault {
+    width: 600px;
+    margin-bottom:100px;
+  }
+</style>
+
+<div id="divdefault">
   <form method="POST" action="{{ url_for('games_create') }}">
     <h1 class="h3 mb-3 font-weight-normal">Create a new game</h1>
     <div class="form-group">
@@ -18,10 +26,10 @@
 		<small id="nameHelp" class="form-text text-muted">Choose player count </small>
 	  </div>
     <div class="form-group">
-      <button class="btn" type="submit">Add a new game</button>
+      <button class="btn btn-sm" type="submit">Add a new game</button>
     </div>
   </form>
-</body>
+</div>
 {{ error }}
 
 {% endblock %}

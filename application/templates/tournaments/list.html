@@ -1,31 +1,61 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<style>
+  table {
+    width: 700px;
+  }
+</style>
+
+<body class="text-center">
+  <h1>Padel Hall of Fame Tournaments</h1>
+  <h2>Tournaments open to join</h2>
+  <p>Users are looking players to join into the tournament</p>
   <table>
     <tr>
-      <th>Tournament</th>
-      <th>Player count</th>
-      <th>Finished</th>
+      <th width="55%" style="text-align:left">TOURNAMENT NAME</th>
+      <th style="text-align:center" width="15%">PLAYERS</th>
     </tr>
     {% for tournament in tournaments %}
     <tr>
-      <td>{{ tournament.name }}</td>
-      <td>{{ tournament.playerCount }}</td>
-      <td>{{ tournament.done }}</td>
+      <td style="text-align:left">{{ tournament.name }}</td>
+      {% for row in playersInTournaments %}
+      {% if row.tournamentid == tournament.id and row.players < tournament.playerCount %}
+      <td style="text-align:center"> {{ tournament.players|length }} / {{ tournament.playerCount }}</td>
+      {% endif %}
+      {% endfor %}
+      {% if current_user and current_user.is_authenticated %}
       <td>
         <form method="GET" action="{{ url_for('tournaments_view_tournament', tournament_id=tournament.id) }}">
           <input type="submit" value="View"/>
-        </form>
+       </form>
       </td>
       <td>
-        <form method="POST" action="{{ url_for('tournaments_set_done', tournament_id=tournament.id) }}">
-          <input type="submit" value="Change status!"/>
-        </form>
-      </td>
-      <td>
+        {% if 'Admin' in current_user.roles[0].name and current_user.id != tournament.account_id %}
         <form method="POST" action="{{ url_for('tournaments_remove', tournament_id=tournament.id) }}">
           <input type="submit" value="Remove tournament"/>
         </form>
+        {% endif %}
+        {% endif %}
+        {% if current_user.id == tournament.account_id and tournament.players|length != tournament.playerCount %}
+        <form method="POST" action="{{ url_for('tournaments_remove', tournament_id=tournament.id) }}">
+          <input type="submit" value="Remove tournament"/>
+        </form>
+        {% endif %}
+      </td>
+      <td>
+        {% if current_user not in tournament.players %}
+        <form method="POST" action="{{ url_for('tournaments_join', tournament_id=tournament.id) }}">
+          <input type="submit" value="Join"/>
+        </form>
+        {% else %}
+        {% if tournament.players|length != tournament.playerCount and current_user.id != tournament.account_id %}
+        <form method="POST" action="{{ url_for('tournament_leave', tournament_id=tournament.id) }}">
+          <input type="submit" value="Leave"/>
+        </form>
+        {% endif %}
+        {% endif %}
       </td>
     </tr>
     {% endfor %}

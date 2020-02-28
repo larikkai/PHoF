@@ -77,7 +77,7 @@ def games_remove(game_id):
     return redirect(url_for("games_index"))
 
 @app.route("/games/<game_id>/leave", methods=["POST"])
-@adminlogin_required(role='Admin')
+@login_required
 def game_leave(game_id):
 
     game = Game.query.get(game_id)
@@ -102,7 +102,7 @@ def games_create():
   
     game = Game(form.name.data)
     game.playerCount = form.playerCount.data
-    game.done = form.done.data
+    game.done = False
     game.account_id = current_user.id
 
     user = User.query.get(current_user.id)
