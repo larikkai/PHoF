@@ -32,12 +32,25 @@ def games_set_done(game_id):
 def games_set_score(game_id):
 
     form = GameResultForm(request.form)
-
     game = Game.query.get(game_id)
-    game.done = True
-    game.score1 = form.score1.data
-    game.score2 = form.score2.data
-    db.session().commit()
+    games = Game.query.all()
+    playerIds = Game.find_players_in_single_game(game_id)
+
+    if 'Admin' != current_user.roles[0].name:
+        if len(game.players) != game.playerCount or current_user.id not in playerIds:
+            return render_template("games/single.html", game = game, form = form, games=games)
+        else:
+            game.done = True
+            game.score1 = form.score1.data
+            game.score2 = form.score2.data
+            db.session().commit()
+    else:
+        if len(game.players) != game.playerCount:
+            return render_template("games/single.html", game = game, form = form, games=games)
+        game.done = True
+        game.score1 = form.score1.data
+        game.score2 = form.score2.data
+        db.session().commit()
   
     return redirect(url_for("games_index"))
 
@@ -46,12 +59,12 @@ def games_set_score(game_id):
 def games_join(game_id):
 
     game = Game.query.get(game_id)
-    
     user = User.query.get(current_user.id)
-    game.players.append(user)
 
-    db.session().add(game)
-    db.session().commit()
+    if len(game.players) != game.playerCount:
+        game.players.append(user)
+        db.session().add(game)
+        db.session().commit()
   
     return redirect(url_for("games_index"))
 
@@ -67,12 +80,20 @@ def games_view_game(game_id):
 
 
 @app.route("/games/<game_id>/remove", methods=["POST"])
-@adminlogin_required(role='Admin')
+@login_required
 def games_remove(game_id):
-
+    
     game = Game.query.get(game_id)
-    db.session().delete(game)
-    db.session().commit()
+
+    if current_user.id == game.account_id or 'Admin' == current_user.roles[0].name:
+        if len(game.players) != game.playerCount:
+            db.session().delete(game)
+            db.session().commit()
+            return redirect(url_for("games_index"))
+        if len(game.players) == game.playerCount and 'Admin' == current_user.roles[0].name:
+            db.session().delete(game)
+            db.session().commit()
+            return redirect(url_for("games_index"))
   
     return redirect(url_for("games_index"))
 
@@ -81,11 +102,12 @@ def games_remove(game_id):
 def game_leave(game_id):
 
     game = Game.query.get(game_id)
-
     user = User.query.get(current_user.id)
 
+    if len(game.players) == game.playerCount:
+        return redirect(url_for("games_index"))
+    
     game.players.remove(user)
-
     db.session().add(game)
     db.session().commit()
   

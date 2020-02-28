@@ -32,7 +32,7 @@ Admin käyttäjät voivat peruskäyttäjien toimintojen lisäksi luoda sisältö
 
 ### Dokumentaatio
 
-[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/documentation/Tietokantakaavio.jpg "Tietokantakaavio")
+[Tietokantakaavio](https://github.com/larikkai/PHoF/blob/master/documentation/database_diagram.jpg "Tietokantakaavio")
 
 [Käyttötapaukset](https://github.com/larikkai/PHoF/blob/master/documentation/user_storyt.md "Käyttötapaukset")
 

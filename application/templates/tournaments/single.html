@@ -13,6 +13,11 @@
 
 <div id="divdefault" class="text-center">
   <h1>{{ tournament.name }}</h1>
+  <h2>Players joined</h2>
+  <p>{{ tournament.players|length }} / {{ tournament.playerCount }}</p>
+  {% for player in players %}
+  {{ player.name }}
+  {% endfor %}
   <h2>Games</h2>
   <table>
     <tr>

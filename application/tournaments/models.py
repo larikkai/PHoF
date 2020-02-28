@@ -60,6 +60,20 @@ class Tournament(Base):
         return response
     
     @staticmethod
+    def find_players_in_single_tournament(tournamentid):
+        stmt = text("SELECT * FROM Tournament"
+                    " INNER JOIN tournament_players ON tournament_players.tournament_id = Tournament.id"
+                    " LEFT JOIN Account ON Account.id = tournament_players.account_id"
+                    " WHERE Tournament.id = :tournamentid").params(tournamentid=tournamentid)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[13]})
+
+        return response
+    
+    @staticmethod
     def find_games_in_tournament(tournamentid):
         stmt = text("SELECT * FROM Game"
                     " INNER JOIN tournament_games ON tournament_games.games_id = Game.id"

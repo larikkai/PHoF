@@ -68,6 +68,20 @@ class Game(Base):
 
         return response
 
+    @staticmethod
+    def find_players_in_single_game(gameid):
+        stmt = text("SELECT * FROM Game"
+                    " INNER JOIN game_players ON game_players.game_id = Game.id"
+                    " LEFT JOIN Account ON Account.id = game_players.account_id"
+                    " WHERE Game.id = :gameid").params(gameid=gameid)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append(row[9])
+
+        return response
+
         #SELECT * FROM Game INNER JOIN game_players ON game_players.game_id = Game.id LEFT JOIN Account ON Account.id = game_players.account_id;
         #SELECT Game.id, COUNT(*) FROM Game INNER JOIN game_players ON game_players.game_id = Game.id LEFT JOIN Account ON Account.id = game_players.account_id GROUP BY Game.id;
         #SELECT COUNT(*) FROM Account INNER JOIN game_players ON game_players.account_id = Account.id LEFT JOIN Game ON Game.id = game_players.game_id WHERE Game.id = 1;

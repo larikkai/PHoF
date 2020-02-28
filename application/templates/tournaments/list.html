@@ -32,16 +32,16 @@
        </form>
       </td>
       <td>
-        {% if 'Admin' in current_user.roles[0].name and current_user.id != tournament.account_id %}
+        {% if 'Admin' in current_user.roles[0].name %}
         <form method="POST" action="{{ url_for('tournaments_remove', tournament_id=tournament.id) }}">
           <input type="submit" value="Remove tournament"/>
         </form>
-        {% endif %}
-        {% endif %}
+        {% else %}
         {% if current_user.id == tournament.account_id and tournament.players|length != tournament.playerCount %}
         <form method="POST" action="{{ url_for('tournaments_remove', tournament_id=tournament.id) }}">
           <input type="submit" value="Remove tournament"/>
         </form>
+        {% endif %}
         {% endif %}
       </td>
       <td>
@@ -58,6 +58,7 @@
         {% endif %}
       </td>
     </tr>
+    {% endif %}
     {% endfor %}
   </table>
 {% endblock %}

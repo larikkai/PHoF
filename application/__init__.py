@@ -102,37 +102,6 @@ try:
         user2.password = pw_hash
         user2.roles.append(admin_role)
         db.session().add(user2)
-        db.session().commit()
-    
-    else:
-        # Create default users
-        user1 = User('test user1')
-        user1.username = 'test_user1'
-        pw_hash = bcrypt.generate_password_hash('test').decode('utf-8')
-        user1.password = pw_hash
-        user1.roles.append(user_role)
-        db.session().add(user1)
-
-        user2 = User('test user2')
-        user2.username = 'test_user2'
-        pw_hash = bcrypt.generate_password_hash('test').decode('utf-8')
-        user2.password = pw_hash
-        user2.roles.append(admin_role)
-        db.session().add(user2)
-
-        user3 = User('test user3')
-        user3.username = 'test_user3'
-        pw_hash = bcrypt.generate_password_hash('test').decode('utf-8')
-        user3.password = pw_hash
-        user3.roles.append(user_role)
-        db.session().add(user3)
-
-        user4 = User('test user4')
-        user4.username = 'test_user4'
-        pw_hash = bcrypt.generate_password_hash('test').decode('utf-8')
-        user4.password = pw_hash
-        user4.roles.append(user_role)
-        db.session().add(user4)
         db.session().commit()"""
 except:
     pass

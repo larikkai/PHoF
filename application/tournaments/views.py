@@ -21,8 +21,7 @@ def tournaments_index():
 @app.route("/tournaments/new/")
 @login_required
 def tournaments_form():
-    players = [2,4,8]
-    return render_template("tournaments/new.html", players = players, form = TournamentForm())
+    return render_template("tournaments/new.html", form = TournamentForm())
 
 @app.route("/tournaments/<tournament_id>/", methods=["GET"])
 @login_required
@@ -30,11 +29,9 @@ def tournaments_view_tournament(tournament_id):
 
     tournament = Tournament.query.get(tournament_id)
     tournamentGames = Tournament.find_games_in_tournament(tournament_id)
+    players = Tournament.find_players_in_single_tournament(tournament_id)
 
-    for game in tournamentGames:
-        print(game)
-
-    return render_template("tournaments/single.html", tournament = tournament, tournamentGames=tournamentGames)
+    return render_template("tournaments/single.html", tournament = tournament, tournamentGames=tournamentGames, players=players)
 
 
 @app.route("/tournaments/<tournament_id>/remove", methods=["POST"])
@@ -42,8 +39,16 @@ def tournaments_view_tournament(tournament_id):
 def tournaments_remove(tournament_id):
 
     tournament = Tournament.query.get(tournament_id)
-    db.session().delete(tournament)
-    db.session().commit()
+
+    if current_user.id == tournament.account_id or 'Admin' == current_user.roles[0].name:
+        if len(tournament.players) != tournament.playerCount:
+            db.session().delete(tournament)
+            db.session().commit()
+            return redirect(url_for("tournaments_index"))
+        if len(tournament.players) == tournament.playerCount and 'Admin' == current_user.roles[0].name:
+            db.session().delete(tournament)
+            db.session().commit()
+            return redirect(url_for("tournaments_index"))
   
     return redirect(url_for("tournaments_index"))
 

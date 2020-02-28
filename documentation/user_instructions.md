@@ -50,9 +50,9 @@ When you stop using the application, you can log out by pressing Logout in the n
 
 As sign up user you can create new game, user navbar to entry Add a game or Add a tournament page. Invent the game name and fill it in the game name field, select the number of players from dropdown form. When done click Add a new game / tournament.
 
-### Join or leave event
+### Join or leave game or tournament
 
-As sign up user you can you can join into a game or tournament. Browse games or tournaments, if you are qualified to join, join button is visible. If you are joined to an event and it is not confirmed, you can leave the event. After event is confirmed you cannot leave.
+As sign up user you can you can join into a game or tournament. Browse games or tournaments, if you are qualified to join, join button is visible. If you are joined to an game or a tournament and it is not full, you can leave the game or tournament. After the game or the tournament is full you cannot leave.
 
 ## Ranking and news
 
@@ -65,7 +65,8 @@ The upper type contains, in addition to its own rights, all the rights of the lo
 
 ### Admin 
 
-Admin can remove confirmed event or change result in any given time.
+Admin can remove any game or tournament.
+Admin can change any single game or tournament game result.
 
 Admin can remove user.
 
